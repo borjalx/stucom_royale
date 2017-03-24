@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <a href="registro.php"> Registro </a><hr>
-        <a href="registro.php"> Login </a><hr>
+        <a href="login.php"> Login </a><hr>
         
     </body>
 </html>
