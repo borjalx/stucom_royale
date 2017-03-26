@@ -2,9 +2,6 @@
 session_start();
 require_once 'bbdd_royale.php';
 if (isset($_SESSION['type'])) {
-
-    $tipo = $_SESSION['type'];
-    echo $tipo;
     ?>
     <html>
         <head>
@@ -12,6 +9,9 @@ if (isset($_SESSION['type'])) {
             <title></title>
         </head>
         <body>
+            <a href="modificarp.php"> Modificar password </a><hr>
+            <a href="verPerfil.php"> Ver perfil </a><hr>
+            <a href="batalla.php"> Batalla </a><hr>
         </body>
     </html>
 
