@@ -20,6 +20,9 @@
             if($pass == $pass2){
                 if(existeUsuario($name) == false){
                     registrarUsu($name, $pass);
+                    regalarCarta($name);
+                    regalarCarta($name);
+                    regalarCarta($name);
                 }else {
                     echo "El usuario existe";
                 }

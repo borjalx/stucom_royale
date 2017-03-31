@@ -200,8 +200,9 @@ function regalarCarta($nombre_usuario){
             extract($fila);
             $arrayc[] = $name;               
         }
-    $numr = rand(0, count($arrayc)-1);
-    $nombre_carta = $arrayc($numr);
+    $numr = rand(0, (count($arrayc)-1));
+    echo $numr;
+    $nombre_carta = $arrayc[$numr];
     darCarta($nombre_usuario, $nombre_carta);
 }
 
