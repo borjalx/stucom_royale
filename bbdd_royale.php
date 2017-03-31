@@ -108,7 +108,7 @@ function altaCarta($nombre,$tipo,$calidad,$vida,$daño,$elixir){
 
 function rankingUsuarios(){
     $con = conexion("royal");
-    $query = "select username,wins,level from user order by level,wins desc";
+    $query = "select username,wins,level from user order by level desc, wins desc";
     
     $resultado = mysqli_query($con, $query);
     desconectar($con);
@@ -163,7 +163,7 @@ function darCarta($nombre_usuario,$nombre_carta){
     $conectar = conexion("royal");
     
     if(cartaRepe($nombre_usuario, $nombre_carta) != true){
-        $consulta = "insert into deck values ('$nombre_usuario','$nombre_carta','0')";
+        $consulta = "insert into deck values ('$nombre_usuario','$nombre_carta','1')";
         if(mysqli_query($conectar, $consulta)){
         echo "<p color='blue'> Carta dada</p><br>";
         echo "<a href='admin_pagina.php'>Volver al menú<a>";
@@ -192,17 +192,17 @@ function cartasxn(){
     return $resultado;
 }
 
-function regalar3Cartas($nombre_usuario){
-    
-    /*Sacamos nombre de una carta y ejecutamos funcion dar carta 3 veces*/
-    
-    
-    $con = conexion("royal");
-    $query = "select name from card";
-    
-    $resultado = mysqli_query($con, $query);
-    desconectar($con);
-    return $resultado;
+function regalarCarta($nombre_usuario){
+    $arrayc = array();
+    $usuarios = listadoCartas();
+               
+    while($fila = mysqli_fetch_array($usuarios)){
+            extract($fila);
+            $arrayc[] = $name;               
+        }
+    $numr = rand(0, count($arrayc)-1);
+    $nombre_carta = $arrayc($numr);
+    darCarta($nombre_usuario, $nombre_carta);
 }
 
 function cambiarPass($nombre_usuario,$contraseña){

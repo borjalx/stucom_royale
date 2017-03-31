@@ -22,8 +22,9 @@ if (isset($_SESSION['type']) == 1) {
                 
                 while($fila = mysqli_fetch_array($usuarios)){
                     extract($fila);
-                    
+                    echo "<tr>";
                     echo "<td> $username </td> <td> $level </td> <td> $wins </td>";
+                    echo "</tr>";
                 }
                 ?>
                 
