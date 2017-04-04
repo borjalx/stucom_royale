@@ -25,6 +25,24 @@ if (isset($_SESSION['type'])) {
                     extract($fila);
                     $va = ($hitpoints + $nivelcarta)*2;
                     $da = ($damage + $nivelcarta)*2;
+                    if($type == "tr"){
+                        $type = "Tropa";
+                    }else if($type == "es"){
+                        $type = "Estructura";
+                    }else if($type == "he"){
+                        $type = "Hechizo";
+                    }
+                    
+                    if($rarity == "com"){
+                        $rarity = "Comunes";
+                    }else if($rarity == "esp"){
+                        $rarity = "Especiales";
+                    }else if($rarity == "epi"){
+                        $rarity = "Épicas";
+                    }else if($rarity == "leg"){
+                        $rarity = "Legendaria";
+                    }
+                    
                     echo "<tr>";
                     echo "<td> $nombre </td> <td> $victorias </td> <td> $nivel </td><td> $name </td> <td> $type </td> <td> $rarity </td> <td> $cost </td> <td> $nivelcarta </td> <td> $va </td> <td> $da </td>";
                     echo "</tr>";
