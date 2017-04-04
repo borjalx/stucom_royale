@@ -219,4 +219,17 @@ function cambiarPass($nombre_usuario,$contraseña){
     desconectar($con);
 }
 
+function verPerfil($nombre_usuario){
+    $con = conexion("royal");
+    $query = "select deck.level as nivelcarta, user.username as nombre, user.wins as victorias, user.level as nivel, card.name, card.type, card.rarity, card.cost
+from user 
+inner join deck on user.username = deck.user 
+inner join card on card.name = deck.card
+where deck.user = 'usu4';";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
 ?>
