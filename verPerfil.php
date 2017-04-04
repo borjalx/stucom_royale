@@ -15,7 +15,7 @@ if (isset($_SESSION['type'])) {
             <hr>
             <table>
                 <tr>
-                    <th> NOMBRE </th> <th> VICTORIAS </th> <th> NIVEL </th> <th> NOMBRE CARTA </th> <th> TIPO CARTA</th> <th> CALIDAD </th> <th> ELIXIR </th> <th> NIVEL CARTA </th>
+                    <th> NOMBRE </th> <th> VICTORIAS </th> <th> NIVEL </th> <th> NOMBRE CARTA </th> <th> TIPO CARTA</th> <th> CALIDAD </th> <th> ELIXIR </th> <th> NIVEL CARTA </th> <th> VIDA ACTUAL</th> <th> DAÑO ACTUAL</th>
                 </tr>
                 
                 <?php
@@ -23,8 +23,10 @@ if (isset($_SESSION['type'])) {
                 
                 while($fila = mysqli_fetch_array($info)){
                     extract($fila);
+                    $va = ($hitpoints + $nivelcarta)*2;
+                    $da = ($damage + $nivelcarta)*2;
                     echo "<tr>";
-                    echo "<td> $nombre </td> <td> $victorias </td> <td> $nivel </td><td> $name </td> <td> $type </td> <td> $rarity </td> <td> $cost </td> <td> $nivelcarta </td>";
+                    echo "<td> $nombre </td> <td> $victorias </td> <td> $nivel </td><td> $name </td> <td> $type </td> <td> $rarity </td> <td> $cost </td> <td> $nivelcarta </td> <td> $va </td> <td> $da </td>";
                     echo "</tr>";
                 }
                 ?>
