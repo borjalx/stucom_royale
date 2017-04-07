@@ -1,21 +1,20 @@
 <?php
 session_start();
 require_once 'bbdd_royale.php';
-$puntos = 0;
+$puntos;
 if (isset($_SESSION['type'])) {
     $nombre_usuario = $_SESSION["user"];
 if(isset($_POST['escoger3'])){
     $numb = rand(0, 10);
-    
+    $puntos = $_GET['puntos'];
     $info3 = cartasxu($nombre_usuario);
     
      while($fila = mysqli_fetch_array($info3)){
         extract($fila);
-        $vida3 = $hitpoints;
+        $vida3 = $hitpoints + ($level*2);
         $categoria3 = $rarity;
         $elixir3 = $cost;
     }
-    
     if($elixir3 > $numb){
         $puntos++;
         echo "Tercera fase ganada<br>";
@@ -53,11 +52,12 @@ if(isset($_POST['escoger3'])){
     $info2 = cartasxu($nombre_usuario);
      while($fila = mysqli_fetch_array($info2)){
         extract($fila);
-        $vida2 = $hitpoints;
+        $vida2 = $hitpoints + ($level*2);
         $categoria2 = $rarity;
         $elixir2 = $cost;
     }
-    $opcion = $arrayc[$num2];;
+    $opcion = $arrayc[$num2];
+    $puntos = $_GET['puntos'];
     if($opcion == $categoria2){
         $puntos++;
         echo "Segunda fase ganada<br>";
@@ -68,7 +68,7 @@ if(isset($_POST['escoger3'])){
     echo "Categoria aleatoria = $opcion<br>";
     
     ?>
-    <form action="" method="POST">
+    <form action="batalla.php?puntos=<?php echo $puntos ?>" method="POST">
         Escoge una carta(nombre - nivel): 
         <select name="carta">
         <?php
@@ -95,11 +95,11 @@ else if(isset($_POST['escoger'])){
     
      while($fila = mysqli_fetch_array($info)){
         extract($fila);
-        $vida = $hitpoints;
         $categoria = $rarity;
         $elixir = $cost;
+        $vida = $hitpoints + ($level*2);
     }
-    
+    $puntos = $_GET['puntos'];
     if($vida > $num){
         $puntos++;
         echo "Primera fase ganada<br>";
@@ -108,16 +108,20 @@ else if(isset($_POST['escoger'])){
     }
     echo "Vida = $vida<br>";
     echo "Número aleatorio = $num<br>";
+    
+    echo $puntos;
     ?>
-    <form action="" method="POST">
-        Escoge una carta(nombre - nivel): 
+    <form action="batalla.php?puntos=<?php echo $puntos ?>" method="POST">
+        Escoge una carta(nombre - nivel):
         <select name="carta">
         <?php
+
+        
              $cartas= cartasxu($nombre_usuario);
         while($fila = mysqli_fetch_array($cartas)){
             extract($fila);
             echo "<option value='$name'>$name - $level </option>";
-            /*echo "<input type='hidden' name='vida' value='$hitpoints'>";
+            /*echo "<input type='hidden' name='puntos' value='$hitpoints'>";
             echo "<input type='hidden' name='categoria' value='$rarity'>";
             echo "<input type='hidden' name='elixir' value='$cost'>";*/
         }
@@ -130,7 +134,6 @@ else if(isset($_POST['escoger'])){
     
 }else{
 
-
     ?>
     <html>
         <head>
@@ -141,7 +144,7 @@ else if(isset($_POST['escoger'])){
             
             <h2> BATALLA </h2>
             <hr>
-            <form action="" method="POST">
+            <form action="batalla.php?puntos=0" method="POST">
                 Escoge una carta(nombre - nivel): 
                 <select name="carta">
                 <?php
@@ -149,10 +152,8 @@ else if(isset($_POST['escoger'])){
                 while($fila = mysqli_fetch_array($cartas)){
                     extract($fila);
                     echo "<option value='$name'>$name - $level </option>";
-                    /*echo "<input type='hidden' name='vida' value='$hitpoints'>";
-                    echo "<input type='hidden' name='categoria' value='$rarity'>";
-                    echo "<input type='hidden' name='elixir' value='$cost'>";*/
                 }
+                
                 ?>
                 </select>
                 <input type="submit" name="escoger" value="escoger"/>

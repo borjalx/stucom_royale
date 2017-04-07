@@ -23,8 +23,8 @@ if (isset($_SESSION['type'])) {
                 
                 while($fila = mysqli_fetch_array($info)){
                     extract($fila);
-                    $va = ($hitpoints + $nivelcarta)*2;
-                    $da = ($damage + $nivelcarta)*2;
+                    $va = $hitpoints + ($nivelcarta*2);
+                    $da = $damage + ($nivelcarta*2);
                     if($type == "tr"){
                         $type = "Tropa";
                     }else if($type == "es"){

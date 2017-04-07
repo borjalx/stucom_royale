@@ -13,6 +13,10 @@ if (isset($_SESSION['type']) == 1) {
             <a href="mejoresUsuarios.php"> Ranking de mejores usuarios </a><hr>
             <a href="borrarUsuario.php"> Borrar un usuario </a><hr>
             <a href="regalarCarta.php"> Incorporar carta a un usuario </a><hr>
+            <hr><hr>
+            <a href="modificarp.php"> Modificar password </a><hr>
+            <a href="verPerfil.php"> Ver perfil </a><hr>
+            <a href="batalla.php"> Batalla </a><hr>
         </body>
     </html>
 
