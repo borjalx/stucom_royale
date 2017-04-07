@@ -145,6 +145,17 @@ function listadoCartas(){
     return $resultado;
 }
 
+function cartasxu($nombre_usuario){
+    $con = conexion("royal");
+    $query = "select card.*,deck.level from deck 
+            inner join card on card.name = deck.card
+            where user = '$nombre_usuario'";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
 function cartaRepe($nombre_usuario,$nombre_carta){
     $conectar = conexion("royal");
     $consulta = "select * from deck where user = '$nombre_usuario' and card='$nombre_carta'";
