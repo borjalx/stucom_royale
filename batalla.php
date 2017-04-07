@@ -26,6 +26,27 @@ if(isset($_POST['escoger3'])){
     echo "Elixir usuario= $elixir3<br>";
     echo "Elixir aleatorio = $numb<br>";
     echo "Puntos totales = $puntos";
+    
+    
+    if($puntos > 2){
+        incrementarVictorias($nombre_usuario); 
+        
+        $info4 = verPerfil($nombre_usuario);
+    
+        while($fila = mysqli_fetch_array($info4)){
+        extract($fila);
+        $vic = $wins;
+        }
+        
+        if($vic%5 == 0){
+            regalarCarta($nombre_usuario);
+            regalarCarta($nombre_usuario);
+            regalarCarta($nombre_usuario);
+        }
+        if($vic%10 == 0){
+            incrementarNivel($nombre_usuario);
+        }
+    }
 }else if(isset($_POST['escoger2'])){
     $arrayc = array("com","esp","epi","leg");
     $num2 = rand(0,3);

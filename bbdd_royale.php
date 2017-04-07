@@ -243,4 +243,22 @@ where deck.user = '$nombre_usuario';";
     return $resultado;
 }
 
+function incrementarVictorias($nombre_usuario){
+    $con = conexion("royal");
+    $query = "update user set wins = wins+1 where username = '$nombre_usuario'";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
+function incrementarNivel($nombre_usuario){
+    $con = conexion("royal");
+    $query = "update user set level = level+1 where username = '$nombre_usuario'";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
 ?>
